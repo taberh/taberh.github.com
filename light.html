@@ -10,7 +10,7 @@
 <script>
 var Map, Utils, App, Light,	
 	CEIL_LENGTH = 8,
-	TRAIL_LENGTH = 15,
+	TRAIL_LENGTH = 35,
 	RANDOM_PLAY_INTERVAL = 250,
 	LIGHT_COLOR = ['#ff0000', '#FFEE00', '#00A8FF', '#00ff00'];
 
@@ -154,8 +154,8 @@ Light = (function() {
 			y: y - (y % CEIL_LENGTH),
 			dir: dir,
 			color: [
-				'rgba(' + color + ', .4)',
-				'rgba(' + color + ', .1)'
+				'rgba(' + color + ', .5)',
+				'rgba(' + color + ', .0)'
 			]
 		});
 

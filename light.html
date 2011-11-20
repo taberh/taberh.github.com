@@ -9,9 +9,9 @@
 
 <script>
 var Map, Utils, App, Light,	
-	CEIL_LENGTH = 10,
+	CEIL_LENGTH = 8,
 	TRAIL_LENGTH = 15,
-	RANDOM_PLAY_INTERVAL = 500,
+	RANDOM_PLAY_INTERVAL = 250,
 	LIGHT_COLOR = ['#ff0000', '#FFEE00', '#00A8FF', '#00ff00'];
 
 App = (function(doc, undefined) {
@@ -45,8 +45,8 @@ App = (function(doc, undefined) {
 	};
 
 	function init() {
-		var WIDTH = 400,
-			HEIGHT = 400,
+		var WIDTH = document.body.scrollWidth,
+			HEIGHT = document.body.scrollHeight,
 
 			mapCanvas = _create(),
 			lightCanvas = _create();
@@ -309,7 +309,9 @@ Light = (function() {
 
 }());
 
-App.init();
+window.onload = function() {
+	App.init();
+}
 
 </script>
 </body>

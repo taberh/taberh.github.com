@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>图片加工厂</title>
+<style>
+body {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Sans', 'Sans-serif';
+  font-size: 13px;
+  color: #333;
+  margin:0;
+}
+
+a {
+  color:white;
+  text-decoration:none;
+}
+a:hover {
+  text-decoration:underline;
+}
+
+#common-bar {
+  width: 100%;
+  height: 30px;
+  line-height:30px;
+  background-color: #333;
+  color:white;
+  text-align:center;
+}
+
+#upload-box,
+#dialog,
+.input-file {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+#upload-box {  
+  width: 50%;
+  height: 50%;
+  min-width: 380px;
+  min-height: 200px;
+  margin: -25% 0 0 -25%;
+  border: 2px dashed #f2f2f2;
+  text-align: center;
+  line-height: 100%;
+}
+.input-file {
+  width: 272px;
+  height: 48px;
+  margin: -32px 0 0 -144px;
+  padding: 8px;
+  border-radius: 30px;
+  background: #f2f2f2;
+}
+.filefield {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+#message {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -80px;
+  text-align: center;
+}
+
+.error {
+	color: red;
+}
+.success {
+	color: green;
+}
+.loading {
+	color: gray;
+}
+
+#dialog {
+  display: none;
+  width: 90%;
+  height: 90%;
+  margin: -45% 0 0 -45%;
+  background: white;
+}
+
+button.blue-pill {
+  background-color: #a5b8da;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#a5b8da), to(#7089b3));
+  /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #a5b8da, #7089b3);
+  background-image: -moz-linear-gradient(top, #a5b8da, #7089b3);
+  background-image: -ms-linear-gradient(top, #a5b8da, #7089b3);
+  background-image: -o-linear-gradient(top, #a5b8da, #7089b3);
+  background-image: linear-gradient(top, #a5b8da, #7089b3);
+  border-top: 1px solid #758fba;
+  border-right: 1px solid #6c84ab;
+  border-bottom: 1px solid #5c6f91;
+  border-left: 1px solid #6c84ab;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
+  border-radius: 26px;
+  -webkit-box-shadow: inset 0 1px 0 0 #aec3e5;
+  -moz-box-shadow: inset 0 1px 0 0 #aec3e5;
+  -ms-box-shadow: inset 0 1px 0 0 #aec3e5;
+  -o-box-shadow: inset 0 1px 0 0 #aec3e5;
+  box-shadow: inset 0 1px 0 0 #aec3e5;
+  color: #fff;
+  font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  line-height: 26px;
+  padding: 8px 35px;
+  text-align: center;
+  text-shadow: 0 -1px 1px #64799e;
+  letter-spacing:2px;
+  text-transform: uppercase;
+}
+button.blue-pill:hover,
+button.blue-pill-hover {
+  background-color: #9badcc;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9badcc), to(#687fa6));
+  /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #9badcc, #687fa6);
+  background-image: -moz-linear-gradient(top, #9badcc, #687fa6);
+  background-image: -ms-linear-gradient(top, #9badcc, #687fa6);
+  background-image: -o-linear-gradient(top, #9badcc, #687fa6);
+  background-image: linear-gradient(top, #9badcc, #687fa6);
+  border-top: 1px solid #6d86ad;
+  border-right: 1px solid #647a9e;
+  border-bottom: 1px solid #546685;
+  border-left: 1px solid #647a9e;
+  -webkit-box-shadow: inset 0 1px 0 0 #a5b9d9;
+  -moz-box-shadow: inset 0 1px 0 0 #a5b9d9;
+  -ms-box-shadow: inset 0 1px 0 0 #a5b9d9;
+  -o-box-shadow: inset 0 1px 0 0 #a5b9d9;
+  box-shadow: inset 0 1px 0 0 #a5b9d9;
+  cursor: pointer; 
+}
+button.blue-pill:active,
+button.blue-pill-active {
+  border: 1px solid #546685;
+  -webkit-box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
+  -moz-box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
+  -ms-box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
+  -o-box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
+  box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee; 
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="common-bar">
+  <a href="http://www.taberh.me">Home</a>
+</div>
+
+<div id="upload-box">
+  <div class="input-file">
+    <input class="filefield" type="file" />
+    <button class="blue-pill">请选择或拖入您要处理的图片</button>
+  </div>
+  <div id="message"></div>
+</div>
+
+<div id="dialog">
+</div>
+
+<script>
+
+var App, Utils, File,
+  msgElem = document.getElementById('message'),
+  dialogElem = document.getElementById('dialog');
+
+App = (function(doc) {
+
+  function _bind() {
+    var dropbox = doc.getElementById('upload-box'),
+      filefield = doc.getElementsByClassName('filefield')[0],
+      filebox = doc.getElementsByClassName('input-file')[0],
+      button = doc.getElementsByClassName('blue-pill')[0];
+
+    doc.addEventListener("dragenter", function(e){  
+      dropbox.style.borderColor = 'gray';
+    }, false);
+
+    doc.addEventListener("dragover", function(e){  
+      e.stopPropagation();
+      e.preventDefault();
+    }, false);
+
+    doc.addEventListener("drop", function(e){
+      e.stopPropagation();  
+      e.preventDefault();
+      dropbox.style.borderColor = '#f2f2f2';
+      File.load(e.dataTransfer.files[0]);
+    }, false);
+
+    filefield.addEventListener('change', function(e) {
+      File.load(this.files[0]);
+      this.value = null;
+    }, false);
+
+    filebox.addEventListener('mousemove', function(e) {
+      filefield.style.top = e.offsetY - 10 + 'px';
+      filefield.style.left = e.offsetX - 50 + 'px';
+    }, false);
+
+    filefield.addEventListener('mouseover', function(e) {
+      button.className = 'blue-pill blue-pill-hover';
+    });
+    filefield.addEventListener('click', function(e) {
+      button.className = 'blue-pill blue-pill-active';
+    }, false);
+    filefield.addEventListener('mouseout', function(e) {
+      button.className = 'blue-pill';
+    }, false);
+    filefield.addEventListener('mousemove', function(e) {
+      e.stopPropagation();
+    });
+  };
+
+  function init() {
+    File = new Files('jpg,jpeg,gif,png', function(result) {
+      if (result.data) {
+        msgElem.className = 'success';
+        dialogElem.style.display = 'block';
+        var img = new Image();
+        img.src = result.data;
+        dialogElem.appendChild(img);
+      }
+      else {
+        msgElem.className = 'error';
+      }
+      
+      msgElem.innerHTML = result.message;
+    });
+
+    _bind();
+  };
+  
+  return {
+    init: init
+  };
+}(document));
+
+function Files(format, callback) {
+  this._format = new RegExp(format.replace(/\,/g, '|'));
+  this._callback = callback;
+};
+
+Files.prototype = {
+  constructor: Files,
+  
+  load: function(file) {
+    if (!this._format.test(file.type)) {
+      this._callback({ data: null, message: '文件格式出错！' });
+      return;
+    }
+
+    var read = new FileReader(),
+      self = this;
+    read.onload = function(e) {
+      self._callback({ data: e.target.result, message: '加载成功！' });
+    };
+    read.readAsDataURL(file);
+  }
+};
+
+window.onload = App.init;
+
+</script>
+</body>
+</html>

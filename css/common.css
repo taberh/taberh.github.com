@@ -44,7 +44,7 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-nav ul {
+ul{
   list-style: none;
 }
 
@@ -65,4 +65,46 @@ a {
   vertical-align: baseline;
   background: transparent;
   text-decoration: none;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  line-height:1.25;
+}
+/* header */
+header{
+  height:32px;
+  background:#333;
+  color:white;
+  line-height:32px;
+  text-align:right;
+}
+nav {
+  width:960px;
+  margin:0 auto;
+}
+nav a {
+  color:white;
+  margin:0 10px;
+}
+nav a:hover {
+  color:#efefef;
+  background:#9C9C9C;
+}
+h1{
+  float:left;
+  font-size:24px;
+  font-family:"UltraRegular", Georgia, sans-serif;
+  float: left;
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: normal;
+  padding: 0 10px;
+}
+h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+h1 a:hover {
+  background:none;
 }

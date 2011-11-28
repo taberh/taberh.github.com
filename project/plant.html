@@ -138,30 +138,88 @@ button.blue-pill-active {
 
 <body>
 
-<div id="upload-box">
+<section id="upload-box">
   <div class="input-file">
     <input class="filefield" type="file" />
     <button class="blue-pill">请选择或拖入您要处理的图片</button>
   </div>
   <div id="message"></div>
-</div>
+</section>
 
-<div id="dialog">
-</div>
+<section id="dialog"></section>
 
 <script>
 
-var App, Utils, File,
-  msgElem = document.getElementById('message'),
-  dialogElem = document.getElementById('dialog');
+var App, Utils;
+
+function FileField(field) {
+  var fieldBox = field.parentNode,
+    fieldButton = field.nextElementSibling;
+
+  fieldBox.addEventListener('mousemove', function(e) {
+    field.style.top = e.offsetY - 10 + 'px';
+    field.style.left = e.offsetX - 50 + 'px';
+  }, false);
+
+  fieldBox.addEventListener('mouseover', function(e) {
+    fieldButton.className = 'blue-pill blue-pill-hover';
+  });
+  fieldBox.addEventListener('click', function(e) {
+    fieldButton.className = 'blue-pill blue-pill-active';
+  }, false);
+  fieldBox.addEventListener('mouseout', function(e) {
+    fieldButton.className = 'blue-pill';
+  }, false);
+  fieldBox.addEventListener('mousemove', function(e) {
+    e.stopPropagation();
+  });
+};
+
+function FileView(format, callback) {
+  this._format = new RegExp(format.replace(/\,/g, '|'));
+  this._callback = callback;
+};
+
+FileView.prototype = {
+  constructor: FileView,
+  
+  load: function(file) {
+    if (!this._format.test(file.type)) {
+      this._callback({ data: null, message: '文件格式出错！' });
+      return;
+    }
+
+    var read = new FileReader(),
+      self = this;
+
+    read.onload = function(e) {
+      self._callback({ data: e.target.result, message: '加载成功！' });
+    };
+    read.readAsDataURL(file);
+  }
+};
+
+function Plant(img) {
+  document.body.appendChild(img);
+};
+
+Plant.prototype = {
+  constructor: Plant,
+
+  process: function() {
+    
+  }
+};
 
 App = (function(doc) {
+  var msgElem = document.getElementById('message'),
+    dialogElem = document.getElementById('dialog'),
+    fileFieldElem = doc.getElementsByClassName('filefield')[0],
+    
+    File;
 
   function _bind() {
-    var dropbox = doc.getElementById('upload-box'),
-      filefield = doc.getElementsByClassName('filefield')[0],
-      filebox = doc.getElementsByClassName('input-file')[0],
-      button = doc.getElementsByClassName('blue-pill')[0];
+    var dropbox = doc.getElementById('upload-box');
 
     doc.addEventListener("dragenter", function(e){  
       dropbox.style.borderColor = 'gray';
@@ -179,45 +237,32 @@ App = (function(doc) {
       File.load(e.dataTransfer.files[0]);
     }, false);
 
-    filefield.addEventListener('change', function(e) {
+    fileFieldElem.addEventListener('change', function(e) {
       File.load(this.files[0]);
       this.value = null;
     }, false);
+  };
 
-    filebox.addEventListener('mousemove', function(e) {
-      filefield.style.top = e.offsetY - 10 + 'px';
-      filefield.style.left = e.offsetX - 50 + 'px';
-    }, false);
+  function _handle(result) {
+    if (result.data) {
+      msgElem.className = 'success';
 
-    filefield.addEventListener('mouseover', function(e) {
-      button.className = 'blue-pill blue-pill-hover';
-    });
-    filefield.addEventListener('click', function(e) {
-      button.className = 'blue-pill blue-pill-active';
-    }, false);
-    filefield.addEventListener('mouseout', function(e) {
-      button.className = 'blue-pill';
-    }, false);
-    filefield.addEventListener('mousemove', function(e) {
-      e.stopPropagation();
-    });
+      var img = new Image();
+      img.onload = function() {
+        new Plant(img);
+      };
+      img.src = result.data;
+    }
+    else {
+      msgElem.className = 'error';
+    }
+    
+    msgElem.innerHTML = result.message;
   };
 
   function init() {
-    File = new Files('jpg,jpeg,gif,png', function(result) {
-      if (result.data) {
-        msgElem.className = 'success';
-        dialogElem.style.display = 'block';
-        var img = new Image();
-        img.src = result.data;
-        dialogElem.appendChild(img);
-      }
-      else {
-        msgElem.className = 'error';
-      }
-      
-      msgElem.innerHTML = result.message;
-    });
+    File = new FileView('jpg,jpeg,gif,png', _handle);
+           new FileField(fileFieldElem);
 
     _bind();
   };
@@ -227,26 +272,20 @@ App = (function(doc) {
   };
 }(document));
 
-function Files(format, callback) {
-  this._format = new RegExp(format.replace(/\,/g, '|'));
-  this._callback = callback;
-};
+Utils = {
+  addClass: function(elem, className) {
+    var classes = elem.style.className;
 
-Files.prototype = {
-  constructor: Files,
-  
-  load: function(file) {
-    if (!this._format.test(file.type)) {
-      this._callback({ data: null, message: '文件格式出错！' });
-      return;
+    if (!classes) {
+      elem.style.className = className;
+    } else 
+    if (classes.indexOf(' ' + className + ' ') === -1) {
+      elem.style.className = classes + ' ' + className;
     }
+  },
 
-    var read = new FileReader(),
-      self = this;
-    read.onload = function(e) {
-      self._callback({ data: e.target.result, message: '加载成功！' });
-    };
-    read.readAsDataURL(file);
+  removeClass: function(elem, className) {
+
   }
 };
 

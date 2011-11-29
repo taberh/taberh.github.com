@@ -6,17 +6,57 @@
 <link rel="shortcut icon" href="images/favicon-2011.png" type="image/x-icon" /> 
 <link rel="stylesheet" href="css/common.css" />
 <style>
-h2 {
-  text-align:center;
-  font-size:26px;
-  font-family:"微软雅黑";
+section a {
+  color:black;
+  text-decoration:underline;
 }
-h3 {
-  
+a:hover {
+  color:red;
 }
 section {
-  width:960px;
+  width:80%;
   margin:0 auto;
+  font-size:12px;
+  font-family:"宋体";
+  line-height:22px;
+}
+h2,
+h3 {
+  padding-left:10px;
+  border-left:20px solid #ccc;
+}
+h2 {
+  font-size:26px;
+  margin:40px 0;
+}
+h3 {
+  font-size:20px;
+  margin:20px 0 10px 0;
+}
+#about p,
+ul {
+  margin-left:4em;
+}
+li span {
+  margin-right:5px;
+  color:#666;
+}
+#experience a {
+  margin:0 10px;
+}
+.tpl {
+  font-size:18px;
+  font-weight:bold;
+  color:black;
+  font-family:Calibri;
+}
+</style>
+<style media="print">
+h1,h2,h3,h4,h5,h6,h7 {
+  font-family:"微软雅黑";
+}
+header {
+  display:none;
 }
 </style>
 <!--[if lt IE 9]>
@@ -42,7 +82,9 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
   </nav>
 </header>
 
-<h2>个人简历</h2>
+<section>
+	<h2>个人简历</h2>
+</section>
 
 <section>
   <h3>基本资料</h3>
@@ -51,14 +93,14 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
     <li><span>性别:</span>男</li>
     <li><span>学历:</span>大专</li>
     <li><span>出生日期:</span>91.7.29</li>
-    <li><span>工作年限:</span>2年+</li>
-    <li><span>Blog:</span><a target="_blank" href="http://taber-huang.appspot.com">http://taber-huang.appspot.com</a></li>
-    <li><span>手机:</span>137 3803 6750</li>
+    <li><span>工作年限:</span>3年</li>
+    <li><span>Profiles:</span><a href="http://taberh.me">www.taberh.me</a></li>
+    <li><span>手机:</span><span class="tpl">137 3803 6750</span></li>
   </ul>
 </section>
 
-<section>
-  <h3>个人简介</h3>
+<section id="about">
+  <h3>简介</h3>
   <p>技术爱好者<br />半路出家前端从业者<br />崇尚开源，热爱自由！</p>
 </section>
 
@@ -71,16 +113,16 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
   </ul>
 </section>
 
-<section>
+<section id="experience">
   <h3>工作经历</h3>
   <ul>
-    <li>11.3~~至今<a class="exper-link" target="_blank" href="http://www.igrow.cn/">Igrow</a>前端开发</li>
-    <li>10.2~~11.2<a class="exper-link" target="_blank" href="#">Vrview</a>前端开发</li>
-    <li>09.3~~10.2<a class="exper-link" target="_blank" href="#">Xgxian</a>美工</li>
+    <li>11.3 ~ 至今<a class="exper-link" href="http://www.igrow.cn/">Igrow</a>前端开发</li>
+    <li>10.2 ~ 11.2<a class="exper-link" href="javascript:0">Vrview</a>前端开发</li>
+    <li>09.3 ~ 10.2<a class="exper-link" href="javascript:0">Xgxian</a>美工</li>
   </ul>
 </section>
 
-<section>
+<section id="">
   <h3>项目/作品</h3>
   <ul id="project">
     <li>

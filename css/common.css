@@ -1,19 +1,19 @@
 @font-face {
-  font-family: 'UltraRegular';
-  src: url("../fonts/Ultra-webfont.eot");
-  src: url("../fonts/Ultra-webfont.eot?#iefix") format("embedded-opentype"), 
-       url("../fonts/Ultra-webfont.woff") format("woff"), 
-       url("../fonts/Ultra-webfont.ttf") format("truetype"), 
-       url("../fonts/Ultra-webfont.svg#UltraRegular") format("svg");
-  font-weight: normal;
-  font-style: normal;
+  font-family:'UltraRegular';
+  src:url("../fonts/Ultra-webfont.woff") format("truetype");
+  font-weight:normal;
+  font-style:normal;
+}
+@font-face {
+  font-family:'yahei';
+  src:url("../fonts/MSYHBD.TTF") format("truetype");
 }
 /* 
 html5doctor.com Reset Stylesheet
 v1.6.1
-Last Updated: 2010-09-17
-Author: Richard Clark - http://richclarkdesign.com 
-Twitter: @rich_clark
+Last Updated:2010-09-17
+Author:Richard Clark - http://richclarkdesign.com 
+Twitter:@rich_clark
 */
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -27,49 +27,52 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
 }
 
 body {
-  line-height: 1;
+  line-height:1;
 }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block;
+  display:block;
 }
 
 ul{
-  list-style: none;
+  list-style:none;
 }
 
 blockquote, q {
-  quotes: none;
+  quotes:none;
 }
 
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: '';
-  content: none;
+  content:'';
+  content:none;
 }
 
 a {
-  margin: 0;
-  padding: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-  text-decoration: none;
+  margin:0;
+  padding:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+  text-decoration:none;
 }
 
 body {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  font-family:Calibri, "宋体";
   line-height:1.25;
+}
+h1,h2,h3,h4,h5,h6,h7 {
+  font-family:"yahei", "微软雅黑";
 }
 /* header */
 header{
@@ -77,10 +80,9 @@ header{
   background:#333;
   color:white;
   line-height:32px;
-  text-align:right;
 }
 nav {
-  width:960px;
+  width:80%;
   margin:0 auto;
 }
 nav a {
@@ -94,16 +96,16 @@ nav a:hover {
 h1{
   float:left;
   font-size:24px;
-  font-family:"UltraRegular", Georgia, sans-serif;
-  float: left;
-  line-height: 32px;
-  font-size: 24px;
-  font-weight: normal;
-  padding: 0 10px;
+  font-family:"UltraRegular";
+  float:left;
+  line-height:32px;
+  font-size:24px;
+  font-weight:normal;
 }
 h1 a {
-  color: #fff;
-  text-decoration: none;
+  color:#fff;
+  text-decoration:none;
+  margin-left:0;
 }
 h1 a:hover {
   background:none;

@@ -14,6 +14,7 @@ a:hover {
   color:red;
 }
 section {
+  position:relative;
   width:80%;
   margin:0 auto;
   font-size:12px;
@@ -50,11 +51,23 @@ li span {
   color:black;
   font-family:Calibri;
 }
+#printButton {
+  position:absolute;
+  top:10px;
+  left:180px;
+  background:url(images/print.gif) no-repeat 0 2px;
+  padding-left:16px;
+  text-decoration:none;
+}
+#printButton:hover {
+  background-position:0 -18px;
+}
 </style>
 <style media="print">
 h1,h2,h3,h4,h5,h6,h7 {
   font-family:"微软雅黑";
 }
+#printButton,
 header {
   display:none;
 }
@@ -75,7 +88,7 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
       <a href=".">Table's</a>
     </h1>
     <a href="http://taber-huang.appspot.com">Blog</a>
-    <a href="https://twitter.com/taber_huang">Twitter</a>
+    <a href="https://twitter.com/taberhuang">Twitter</a>
     <a href="https://github.com/taberhuang">Github</a>
     <a href="/project">Project</a>
     <a href="http://www.douban.com/people/taberhuang/">豆瓣</a>
@@ -84,6 +97,7 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
 
 <section>
 	<h2>个人简历</h2>
+  <a id="printButton" href="javascript:window.print()">打印</a>
 </section>
 
 <section>

@@ -308,7 +308,6 @@ Plant.prototype = {
 
   lomo: function(data) {
     var curveRGB = this._curveRGB;
-    console.log('process');
 
     for (var i = 0, len = data.data.length; i < len; i+=4) {
       data.data[i] = curveRGB.r[data.data[i]];

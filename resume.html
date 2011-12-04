@@ -21,25 +21,22 @@ section {
   font-family:"宋体";
   line-height:22px;
 }
-h2,
-h3 {
+h2, h3 {
   padding-left:10px;
   border-left:20px solid #ccc;
 }
 h2 {
   font-size:26px;
-  margin:40px 0;
+  margin:30px 0;
 }
 h3 {
   font-size:20px;
   margin:20px 0 10px 0;
 }
-#about p,
-dl,
-ul {
+p, dl, ul {
   margin-left:4em;
 }
-li span {
+span {
   margin-right:5px;
   color:#666;
 }
@@ -47,6 +44,7 @@ li span {
   margin:0 10px;
 }
 .tpl {
+  margin-left:15px;
   font-size:18px;
   font-weight:bold;
   color:black;
@@ -62,6 +60,15 @@ li span {
 }
 #printButton:hover {
   background-position:0 -18px;
+}
+#base-info ul {
+  margin-top:10px;
+}
+#project a {
+  margin-left:10px;
+}
+dt {
+  margin-top:8px;
 }
 </style>
 <style media="print">
@@ -101,19 +108,17 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
   <a id="printButton" href="javascript:window.print()">打印</a>
 </section>
 
-<section>
+<section id="base-info">
   <h3>基本资料</h3>
+  <p>黄亮 · 男 · 21岁 · 大专</p>
+  <p><span>Profiles:</span><a href="http://taberh.me">www.taberh.me</a></p>
+  <p><span>联系方式:</span><a href="mailto:taber.huang@gmail.com">taber.huang@gmail.com</a><span class="tpl">137 3803 6750</span></p>
   <ul>
-    <li>黄亮 · 男 · 21岁 · 大专</li>
-    <li><span>Profiles:</span><a href="http://taberh.me">www.taberh.me</a></li>
-    <li><span>E-mail:</span><a href="mailto:taber.huang@gmail.com">taber.huang@gmail.com</a></li>
-    <li><span>手机:</span><span class="tpl">137 3803 6750</span></li>
     <li>2年前端开发经验</li>
-    <li>熟练掌握 HTML、CSS、Javascript 前端开发技能；常使用HTML5、CSS3新技术做些练习和小项目</li>
-    <li>熟练使用jQuery, Underscore, Seajs等框架进行开发，对YUI，Kissy等重武器有了解</li>
-    <li>可以使用php处理些简单的前端需求</li>
-    <li>1年网站美工的制作经验</li>
-    <li>能够快速的对效果图切图；转换成语义化的HTML文档</li>
+    <li>熟练掌握 HTML、CSS、Javascript 前端开发技能；工作之余常使用HTML5、CSS3新技术做些练习和小应用</li>
+    <li>熟练使用jQuery, Underscore, Seajs等框架开发，对YUI，Kissy等重武器有了解</li>
+    <li>能够使用php处理些简单的前端需求</li>
+    <li>能够快速的对效果图切图并转换成语义化的HTML文档</li>
     <li>了解并在工作中实践过业界常用的网站前端优化技巧</li>
   </ul>
 </section>
@@ -122,43 +127,37 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
   <h3>工作经历</h3>
   <dl>
     <dt>11.3 ~ 至今<a href="http://www.igrow.cn/">好育园</a>前端开发</dt>
-    <dd>前期负责好育园网站微博的页面和交互开发；后期主要工作是对好育网幼儿园网站系统的前端设计、开发和后端程序员共同定义前后端通信数据格式的定义</dd>
+    <dd>前期负责好育园网站改版和维护；后期负责幼儿园网站的前端设计和开发</dd>
 
     <dt>10.2 ~ 11.2<a href="javascript:0">合肥寰景信息技术有限公司</a>前端开发</dt>
-    <dd>和另一名前端共同开发爱动的演戏大厅，本人负责演戏的登录后界面及大厅内的相关页面和一些设置页面开发</dd>
+    <dd>和一名同事共同开发爱动的演戏大厅，和公司网站的制作和维护</dd>
 
     <dt>09.3 ~ 10.2<a href="javascript:0">合肥新干线信息服务有限公司</a>美工</dt>
-    <dd>根据客户的需求进行简单的企业站的页面设计和制作</dd>
+    <dd>企业站的页面设计和制作</dd>
   </dl>
 </section>
 
-<section>
+<section id="project">
   <h3>项目/作品</h3>
-  <dl id="project">
-    <dt>好育园幼儿园网站系统</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>好育园微博</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>在线投注游戏</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>I-dong游戏大厅</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>Chrome扩展-友商快递100</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>Canvas版-Android屏保</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>Canvas版-图片加工厂</dt>
-    <dd></dd>
-    <dd></dd>
-    <dt>EMange事件管理</dt>
-    <dd></dd>
-    <dd></dd>
+  <dl>
+    <dt><strong>好育园幼儿园网站系统</strong><a href="http://igrow.sianapp.com">http://igrow.sinaapp.com</a></dt>
+    <dd>一个类似淘宝旺铺和QQ空间的应用。简单点说就是一个可以让用户通过装扮功能进行自定义首页的网站。</dd>
+    <dd>在这个项目中我主要负责前端的设计和开发，和后端程序员共同定义JSON数据格式，以及相关文档的编写</dd>
+    <dt><strong>好育园微博</strong></dt>
+    <dd>主要工作是将效果图转换成HTML，并编写些前端交互代码</dd>
+    <dt><strong>在线投注游戏</strong></dt>
+    <dd>一个彩票性质的在线投注娱乐游戏</dd>
+    <dt><strong>I-dong游戏大厅</strong></dt>
+    <dd>由深圳泰山科技有限公司开发的爱动家庭健身系统，我公司的负责使用浏览器解决方案，在chrome上制作游戏大厅界面</dd>
+    <dd>本人负责登录后的欢迎页，个人资料页，健身计划，游戏例表，场馆选择和设置页面的开发</dd>
+    <dt><strong>Chrome扩展-友商快递100</strong></dt>
+    <dd>基于Chrome的在线查询快递订单的应用</dd>
+    <dt><strong>Canvas版-Android屏保</strong><a href="/project/light.html">http://taberh.me/light.html</a></dt>
+    <dd>一个使用Canvas实现的动画效果</dd>
+    <dt><strong>Canvas版-图片加工厂</strong><a href="/project/plant.html">http://taberh.me/plant.html</a></dt>
+    <dd>使用Canvas实现的图片特效处理工具</dd>
+    <dt><strong>EMange事件管理</strong><a href="https://github.com/taberhuang/Emanage">https://github.com/taberhuang/Emanage</a></dt>
+    <dd>一个采用事件代理机制实现在的DOM事件绑定脚本</dd>
   </dl>
 </section>
 

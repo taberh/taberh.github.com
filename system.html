@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Browser info</title>
+</head>
+
+<body>
+<script>
+var fragment = "";
+for (var key in navigator) {
+  fragment += (key + ": " + navigator[key] + "<br />");
+}
+document.write(fragment);
+</script>
+</body>
+</html>

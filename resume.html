@@ -7,8 +7,7 @@
 <link rel="stylesheet" href="css/common.css" />
 <style>
 section a {
-  color:black;
-  text-decoration:underline;
+  color:#666;
 }
 a:hover {
   color:red;
@@ -24,14 +23,15 @@ section {
 h2, h3 {
   padding-left:10px;
   border-left:20px solid #ccc;
+  color:#333;
 }
 h2 {
   font-size:26px;
-  margin:30px 0;
+  margin:40px 0;
 }
 h3 {
   font-size:20px;
-  margin:20px 0 10px 0;
+  margin:30px 0 15px 0;
 }
 p, dl, ul {
   margin-left:4em;
@@ -40,14 +40,14 @@ span {
   margin-right:5px;
   color:#666;
 }
-#experience a {
+#experience strong {
   margin:0 10px;
+  font-weight:bold;
+  color:#333;
 }
 .phone {
   margin:0 15px;
-  font-size:18px;
-  font-weight:bold;
-  color:black;
+  font-size:16px;
   font-family:Calibri;
 }
 #printButton {
@@ -69,6 +69,10 @@ span {
 }
 dt {
   margin-top:8px;
+  color:#333;
+}
+dd {
+  color:#999;
 }
 </style>
 <style media="print">
@@ -111,10 +115,10 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
 <section id="base-info">
   <h3>基本资料</h3>
   <p>黄亮 · 男 · 21岁 · 大专</p>
-  <p><a href="mailto:taber.huang@gmail.com">taber.huang@gmail.com</a><span class="phone">137 3803 6750</span><a href="http://taberh.me">www.taberh.me</a></p>
+  <p><a href="mailto:taber.huang@gmail.com">taber.huang@gmail.com</a><span class="phone">137 3803 6750</span><a href="http://taberh.me">http://taberh.me</a></p>
   <ul>
     <li>2年前端开发经验</li>
-    <li>熟练掌握HTML、CSS、Javascript前端开发技能；和用HTML5、CSS3做练习跟应用</li>
+    <li>熟练掌握HTML、CSS、Javascript前端开发技能；使用过HTML5、CSS3做练习和小应用</li>
     <li>熟练使用jQuery, Underscore, Seajs等框架开发，对YUI，Kissy等重武器有了解</li>
     <li>能够使用php处理些简单的前端需求</li>
     <li>能够快速的对效果图切图并转换成语义化的HTML文档</li>
@@ -125,13 +129,13 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
 <section id="experience">
   <h3>工作经历</h3>
   <dl>
-    <dt>11.3 ~ 至今<a href="http://www.igrow.cn/">好育园</a>前端开发</dt>
+    <dt>11.3 ~ 至今<strong>好育园</strong>前端开发</dt>
     <dd>前期负责好育园网站改版和维护；后期负责幼儿园网站的前端设计和开发</dd>
 
-    <dt>10.2 ~ 11.2<a href="javascript:0">合肥寰景信息技术有限公司</a>前端开发</dt>
-    <dd>和一名同事共同开发爱动的演戏大厅，和公司网站的制作和维护</dd>
+    <dt>10.2 ~ 11.2<strong>合肥寰景信息技术有限公司</strong>前端开发</dt>
+    <dd>负责项目中浏览器解决方案和公司网站的制作和维护</dd>
 
-    <dt>09.3 ~ 10.2<a href="javascript:0">合肥新干线信息服务有限公司</a>美工</dt>
+    <dt>09.3 ~ 10.2<strong>合肥新干线信息服务有限公司</strong>美工</dt>
     <dd>企业站的页面设计和制作</dd>
   </dl>
 </section>
@@ -143,20 +147,16 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
     <dd>一个类似淘宝旺铺和QQ空间的应用。简单点说就是一个可以让用户通过装扮功能进行自定义首页的网站。</dd>
     <dd>在这个项目中我主要负责前端的设计和开发，和后端程序员共同定义JSON数据格式，以及相关文档的编写</dd>
     <dt><strong>好育园微博</strong></dt>
-    <dd>主要工作是将效果图转换成HTML，并编写些前端交互代码</dd>
+    <dd>主要工作是编写HTML页面和交互</dd>
     <dt><strong>在线投注游戏</strong></dt>
     <dd>一个彩票性质的在线投注娱乐游戏</dd>
     <dt><strong>I-dong游戏大厅</strong></dt>
     <dd>由深圳泰山科技有限公司开发的爱动家庭健身系统，我公司的负责使用浏览器解决方案，在chrome上制作游戏大厅界面</dd>
     <dd>本人负责登录后的欢迎页，个人资料页，健身计划，游戏例表，场馆选择和设置页面的开发</dd>
     <dt><strong>Chrome扩展-友商快递100</strong><a href="http://2.gy/aaNu">http://2.gy/aaNu</a></dt>
-    <dd>基于Chrome的在线查询快递订单的应用</dd>
-    <dt><strong>Canvas版-Android屏保</strong><a href="/project/light.html">http://taberh.me/light.html</a></dt>
-    <dd>一个使用Canvas实现的动画效果</dd>
-    <dt><strong>Canvas版-图片加工厂</strong><a href="/project/plant.html">http://taberh.me/plant.html</a></dt>
-    <dd>使用Canvas实现的图片特效处理工具</dd>
-    <dt><strong>EMange事件管理</strong><a href="https://github.com/taberhuang/Emanage">https://github.com/taberhuang/Emanage</a></dt>
-    <dd>一个采用事件代理机制实现在的DOM事件绑定脚本</dd>
+    <dd>基于Chrome的在线查询快递应用</dd>
+    <dt><strong>Canvas版-Android屏保</strong><a href="/project/light.html">http://taberh.me/project/light.html</a></dt>
+    <dt><strong>Canvas版-图片加工厂</strong><a href="/project/plant.html">http://taberh.me/project/plant.html</a></dt>
   </dl>
 </section>
 

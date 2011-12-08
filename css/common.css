@@ -70,6 +70,7 @@ a {
 body {
   font-family:Calibri, "宋体";
   line-height:1.25;
+  color:#666;
 }
 h1,h2,h3,h4,h5,h6,h7 {
   font-family:"yahei", "微软雅黑";
@@ -96,7 +97,7 @@ nav a:hover {
 h1{
   float:left;
   font-size:24px;
-  font-family:"UltraRegular";
+  font-family:"UltraRegular", Calibri, "宋体";
   float:left;
   line-height:32px;
   font-size:24px;

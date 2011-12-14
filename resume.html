@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>Taber's Resume</title>
-<link rel="shortcut icon" href="images/favicon-2011.png" type="image/x-icon" /> 
 <link rel="stylesheet" href="css/common.css" />
+<!--[if lt IE 9]>
+<script src="/js/html5.js"></script>
+<style>
+section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
+</style>
+<![endif]-->
 <style>
 section a {
   color:#666;
@@ -64,6 +69,9 @@ span {
 #base-info ul {
   margin-top:15px;
 }
+#project {
+  margin-bottom:80px;
+}
 #project a {
   margin-left:10px;
 }
@@ -75,7 +83,10 @@ dd {
   color:#999;
 }
 </style>
-<style media="print">
+<style type="text/css" media="print">
+body {
+  font-size:10px;
+}
 h1,h2,h3,h4,h5,h6,h7 {
   font-family:"微软雅黑";
 }
@@ -83,13 +94,25 @@ h1,h2,h3,h4,h5,h6,h7 {
 header {
   display:none;
 }
+h2 {
+  margin:30px 0;
+}
+h3 {
+  margin:20px 0 10px 0;
+}
+#base-info ul {
+  margin-top:10px;
+}
+dt {
+  margin-top:6px;
+}
+strong {
+  font-weight:bold;
+}
+#project {
+  margin-bottom:0;
+}
 </style>
-<!--[if lt IE 9]>
-<script src="js/html5.js"></script>
-<style>
-section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
-</style>
-<![endif]-->
 </head>
 
 <body>
@@ -97,7 +120,7 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
 <header>
   <nav>
     <h1>
-      <a href=".">Table's</a>
+      <a href="/">Table's</a>
     </h1>
     <a href="http://taber-huang.appspot.com">Blog</a>
     <a href="https://twitter.com/taberhuang">Twitter</a>

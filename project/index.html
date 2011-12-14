@@ -1,29 +1,41 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-<meta charset="utf-8"> 
-<title>Taber's profiles</title> 
-<meta name="description" content="taber's profiles" />
-<link rel="stylesheet" href="css/common.css" />
-<style type="text/css">
-header {
-  position:absolute;
-  top:50%;
-  left:0;
-  width:100%;
-  margin-top:-16px;
-}
-</style> 
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Project</title>
+<link rel="stylesheet" href="../css/common.css" />
 <!--[if lt IE 9]>
 <script src="/js/html5.js"></script>
 <style>
 section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
 </style>
 <![endif]-->
-</head> 
- 
-<body>
+<style>
+  a {
+    color:#666;
+  }
+  a:hover {
+    color:black;
+  }
+  #project {
+    width:80%;
+    margin:100px auto;
+  }
+  #project li {
+    float:left;
+    margin-right:30px;
+  }
+  #project a {
+    border-left:5px solid #ccc;
+    padding-left:8px;
+  }
+  #project a:hover {
+    border-left-color:black;
+  }
+</style>
+</head>
 
+<body>
 <header>
   <nav>
     <h1>
@@ -37,6 +49,12 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
     <a href="http://www.douban.com/people/taberhuang/">豆瓣</a>
   </nav>
 </header>
+<ul id="project">
+  <li><a href="plant.html">图片加工厂</a></li>
+  <li><a href="light.html">Android 屏保</a></li>
+  <li><a href="http://igrow.sinaapp.com/">好育园幼儿园</a></li>
+  <li><a href="http://2.gy/aaNu">快递查询扩展</a></li>
+</ul>
 
 <script type="text/javascript">
 
@@ -51,5 +69,5 @@ section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
   })();
 
 </script>
-</body> 
+</body>
 </html>

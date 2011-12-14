@@ -12,6 +12,11 @@ body {
   text-align:center;
 }
 
+#download-browser {
+  display:none;
+}
+
+#dialog,
 #upload-box,
 .input-file {
   position:absolute;
@@ -43,6 +48,8 @@ body {
   left:0;
   z-index:1;
   opacity:0;
+  height:80px;
+  width:200px;
 }
 
 #message {
@@ -66,20 +73,37 @@ body {
 #dialog {
   position:absolute;
   display:none;
-  background:white;
-  margin:0 auto;
+  background:white url(../images/loading.gif) no-repeat center center;
+  border:8px solid white;
+  box-shadow:#333 0 0 10px;
+  -webkit-box-shadow:#333 0 0 10px;
+  -moz-box-shadow:#333 0 0 10px;
+  z-index:100;
 }
 #close {
   position:absolute;
-  top:10px;
-  right:10px;
-  color:red;
+  overflow:hidden;
+  width:28px;
+  height:28px;
+  border-radius:25px;
+  background:white;
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+  line-height:28px;
+  font-size:22px;
+  box-shadow:#333 0 0 10px;
+  -webkit-box-shadow:#333 0 0 10px;
+  -moz-box-shadow:#333 0 0 10px;
+  top:-21px;
+  right:-21px;
 }
-#content {
-  border:3px solid white;
-  box-shadow:#666 0 0 10px;
-  -webkit-box-shadow:#666 0 0 10px;
-  -moz-box-shadow:#666 0 0 10px;
+#close:hover {
+  color:#f00;
+  box-shadow:#f00 0 0 10px;
+  -webkit-box-shadow:#f00 0 0 10px;
+  -moz-box-shadow:#f00 0 0 10px;
 }
 #content img {
   display:block;
@@ -147,8 +171,26 @@ body {
   -o-box-shadow:inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
   box-shadow:inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee; 
 }
-
 </style>
+<!--[if lt IE 9]>
+<style>
+html {
+  overflow:visible;
+}
+body {
+  overflow:hidden;
+}
+#upload-box,
+#dialog,
+.input-file {
+  display:none;
+}
+#download-browser {
+  display:block;
+  margin-top:150px;
+}
+</style>
+<![endif]-->
 </head>
 
 <body>
@@ -162,8 +204,12 @@ body {
 </section>
 
 <section id="dialog">
-  <a id="close" href="javascript:0">Close</a>
+  <a id="close" href="javascript:0">X</a>
   <div id="content"></div>
+</section>
+
+<section id="download-browser">
+您的浏览器out了，赶紧下载高级版本的浏览器，<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html">点击下载</a>
 </section>
 
 <script>
@@ -186,13 +232,13 @@ function FileField(field) {
     if (top < 0 || top > this.offsetHeight || 
         left < 0 || left > this.offsetWidth) return;
     
-    field.style.top = top - 10 + 'px';
-    field.style.left = left - 150 + 'px';
+    field.style.top = top - 40 + 'px';
+    field.style.left = left - 100 + 'px';
   }, false);
   fieldBox.addEventListener('mouseover', function(e) {
     fieldButton.className = 'blue-pill blue-pill-hover';
-    field.style.top = e.offsetY - 10 + 'px';
-    field.style.left = e.offsetX - 150 + 'px';
+    field.style.top = e.offsetY - 40 + 'px';
+    field.style.left = e.offsetX - 100 + 'px';
   });
   fieldBox.addEventListener('mousedown', function(e) {
     fieldButton.className = 'blue-pill blue-pill-active';
@@ -202,8 +248,9 @@ function FileField(field) {
   }, false);
 };
 
-function FileView(format, callback) {
+function FileView(format, filesize, callback) {
   this._format = new RegExp(format);
+  this._filesize = filesize * 1024 * 1024;
   this._callback = callback;
 };
 
@@ -216,7 +263,12 @@ FileView.prototype = {
       read;
 
     if (!this._format.test(file.type)) {
-      this._callback({ data:null, message:'文件格式出错！' });
+      this._callback({ data:null, message:'文件格式出错！ ~.~' });
+      return;
+    }
+
+    if (this._filesize < file.size) {
+      this._callback({ data: null, message: '请选择小于' + this._filesize / 1024 + 'M的图片 ^.^' });
       return;
     }
 
@@ -228,41 +280,29 @@ FileView.prototype = {
   }
 };
 
-function Dialog(boxElem, closeElem, contentElem) {
+function Dialog(boxElem, closeElem) {
   this.boxElem = boxElem;
   this.closeElem = closeElem;
-  this.contentElem = contentElem;
+
+  this._createCover();
 
   Utils.hide(boxElem);
+  Utils.hide(this.coverElem);
 };
 
 Dialog.prototype = {
   open:function() {
-    var boxElem = this.boxElem;
-
-    Utils.show(boxElem);
-
+    Utils.show(this.boxElem);
+    Utils.show(this.coverElem);
     this._bind();
   },
   _close:function() {
-    var boxElem = this.boxElem;
-
-    this.contentElem.innerHTML = '';
-
-    Utils.hide(boxElem);
-    Utils.style(boxElem, {
-      width:'0',
-      height:'0',
-      marginTop:'0',
-      marginLeft:'0'
-    });
-
+    Utils.hide(this.boxElem);
+    Utils.hide(this.coverElem);
     this._unbind();
   },
   _bind:function() {
     var self = this;
-
-    this._unbind = unbind;
 
     this.closeElem.addEventListener('click', close, false);
     document.addEventListener('keydown', close, false);
@@ -274,10 +314,24 @@ Dialog.prototype = {
       e.stopPropagation();
     };
 
-    function unbind() {
+    this._unbind = function() {
       self.closeElem.removeEventListener('click', close, false);
       document.removeEventListener('keydown', close, false);
     };
+  },
+  _createCover: function() {
+    this.coverElem = document.createElement('div');
+    Utils.style(this.coverElem, {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'black',
+      opacity: '0.2',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      zIndex: 99
+	});
+		document.body.appendChild(this.coverElem);
   }
 };
 
@@ -330,7 +384,7 @@ Plant.prototype = {
     canvas.height = img.height;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     
     imgData = ctx.getImageData(0, 0, img.width, img.height);
     
@@ -381,26 +435,60 @@ App = (function(doc) {
   };
 
   function _handle(result) {
-    if (result.data) {
-      msgElem.className = 'success';
-
-      var img = new Image();
-      img.onload = function() {
-        contentElem.appendChild(PhotoPlant.process(img, 'lomo'));
-        PhotoAlbum.open();
-        img.onload = null;
-      };
-      img.src = result.data;
-    }
-    else {
+    if (!result.data) {
       msgElem.className = 'error';
+      msgElem.innerHTML = result.message;
+      return;
     }
     
-    msgElem.innerHTML = result.message;
+    if (result.data) {
+      var img = new Image();
+      img.onload = _complete;
+      img.src = result.data;
+
+      Utils.style(dialogElem, {        
+        width: 40 + 'px',
+        height: 40 + 'px',
+        marginLeft: -20 + 'px',
+        marginTop: -20 + 'px'
+      });
+      contentElem.innerHTML = '';
+      PhotoAlbum.open();
+    }  
+  };
+
+  function _adjustPicSize(img, maxWidth, maxHeight) {
+    if (img.width > maxWidth) {
+      img.height = maxWidth / img.width * img.height;
+      img.width = maxWidth;
+    }
+
+    if (img.height > maxHeight) {
+      img.width = maxHeight / img.height * img.width;
+      img.height = maxHeight;
+    }
+
+    return img;
+  };
+
+  function _complete() {
+
+    _adjustPicSize(this, 800, 800);
+
+    Utils.style(dialogElem, {
+      width: this.width + 'px',
+      height: this.height + 'px',
+      marginLeft: -this.width / 2 + 'px',
+      marginTop: -this.height / 2 + 'px'
+    });
+
+    contentElem.appendChild(PhotoPlant.process(this, 'lomo'));
+
+    this.onload = null;
   };
 
   function init() {
-    File = new FileView('image.*', _handle);
+    File = new FileView('image.*', 2, _handle);
            new FileField(fileFieldElem);
 
     PhotoAlbum = new Dialog(dialogElem, closeElem, contentElem);

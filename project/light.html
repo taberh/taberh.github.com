@@ -3,9 +3,28 @@
 <head>
 <meta charset="utf-8">
 <title>Android 屏保</title>
+<style>
+#download-browser {
+  display:none;
+}
+</style>
+<!--[if lt IE 9]>
+<style>
+body {
+  text-align:center;
+}
+#download-browser {
+  display:block;
+  margin:150px auto;
+}
+</style>
+<![endif]-->
 </head>
 
 <body>
+<section id="download-browser">
+您的浏览器out了，赶紧下载高级版本的浏览器，<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html">点击下载</a>
+</section>
 <script>
 var Map, Utils, App, Light,  
   CEIL_LENGTH = 8,

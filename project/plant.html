@@ -100,10 +100,15 @@ body {
   right:-21px;
 }
 #close:hover {
-  color:#f00;
-  box-shadow:#f00 0 0 10px;
-  -webkit-box-shadow:#f00 0 0 10px;
-  -moz-box-shadow:#f00 0 0 10px;
+  -webkit-transform:scale(1.1);
+  -webkit-animation-name: scaleClose;
+  -webkit-animation-duration:0.2s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function:ease-out-in;
+}
+@-webkit-keyframes scaleClose {
+    0% { -webkit-transform:scale(1); }
+    100% {-webkit-transform:scale(1.1); }
 }
 #content img {
   display:block;

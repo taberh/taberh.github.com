@@ -13,9 +13,31 @@
 
 var App, Game, Map, Snake, Food, Utils, Controller, Tally;
 
-var GRID_SIZE = 10, WIDTH = 500, HEIGHT = 500, FPS = 2;
+var GRID_SIZE = 10, WIDTH = 300, HEIGHT = 300, FPS = 2, MAX_GROW_LENGTH = 3;
+
+var toString = Object.prototype.toString;
 
 Utils = {
+  clone: function(obj) {
+    var ret;
+
+    if (toString.call(obj) === '[object Object]') {
+      ret = {};
+      for (var k in obj) {
+        ret[k] = arguments.callee(obj[k]);
+      }
+    } else
+    if (toString.call(obj) === '[object Array]') {
+      ret = [];
+      for (var i = 0, len = obj.length; i < len; i++) {
+        ret.push(arguments.callee(obj[i]));
+      }
+    } else {
+      ret = obj;
+    }
+
+    return ret;
+  },
   style: function(elem, props) {
     for (var prop in props) {
       elem.style[prop] = props[prop];
@@ -29,6 +51,16 @@ Utils = {
       marginTop: -height / 2 + 'px',
       marginLeft: -width / 2 + 'px'
     });
+  },
+  crash: function(a, b) {
+    var x = Math.abs((a.x + a.w / 2) - (b.x + b.w / 2)) < ((a.w + b.w) / 2);
+    var y = Math.abs((a.y + a.h / 2) - (b.y + b.h / 2)) < ((a.h + b.h) / 2);
+
+    if (x && y) {
+      return true;
+    }
+    
+    return false;
   }
 };
 
@@ -49,49 +81,31 @@ Map = function(width, height) {
   this.height = height;
 }
 
-Snake = (function() {
+Map.prototype = {
+  constructor: Map,
 
-  function _init() {
-    var i, x, y;
-
-    for (i = 0; i < this.length; i++) {
-      if (this.direction[0] === 0) {
-        x = this.origin[0];
-        y = this.origin[1] - (i * GRID_SIZE * this.direction[1]);
-      }
-      else {
-        x = this.origin[0] - (i * GRID_SIZE * this.direction[0]);
-        y = this.origin[1];
-      }
-
-      _grow.call(this, x, y);
+  checkCrash: function(snake) {
+    if (snake.x < 0 || snake.x > this.width - snake.w ||
+        snake.y < 0 || snake.y > this.height - snake.h) {
+      return true;    
     }
-  }
 
-  function _grow(x, y) {
-    this.position.push({
-      x: x,
-      y: y,
-      w: GRID_SIZE,
-      h: GRID_SIZE
-    });
+    return false;
   }
+};
 
-  function _draw(ctx, o) {
-    ctx.fillRect(o.x, o.y, o.w, o.h);
-  }
+Snake = (function() {
 
   function Snake(game, ctx) {
     this.ctx = ctx;
     this.game = game;
-    this.length = 3;
-    this.origin = [100, 100];
-    this.direction = [1, 0]; // turn right
-    this.allowDirection = 'top bottom';
-    this.position = [];
-    this.color = '#ccc';
+    this.length = 8;
+    this.direction = 'right';
+    this.nextDirection = 'right';
+    this.footprint = [];
+    this.position = [{x: 80, y: 100, w: GRID_SIZE, h: GRID_SIZE}];
 
-    _init.call(this);
+    this.grow(this.length - 1);
   }
 
   Snake.prototype = {
@@ -99,44 +113,112 @@ Snake = (function() {
 
     draw: function() {
       var ctx = this.ctx;
-
       this.position.forEach(function(item, i) {
-        ctx.fillStyle = i ? 'black' : 'red';
-        _draw(ctx, item);
+        ctx.fillStyle = i ? '#666' : '#333';
+        ctx.fillRect(item.x, item.y, item.w, item.h);
       });
     },
 
     advance: function() {
-      var head = this.position.pop();
+      var foot = this.position.pop(),
+        head = this.position[0];
 
-      head.x = this.position[0].x + this.direction[0] * GRID_SIZE;
-      head.y = this.position[0].y + this.direction[1] * GRID_SIZE;
+      this.direction = this.nextDirection;
+      this.footprint.unshift(Utils.clone(foot));
+      this.footprint = this.footprint.slice(0, MAX_GROW_LENGTH);
 
-      this.position.unshift(head);
-    },
-
-    setDirection: function(direction) {
-      if (this.allowDirection.indexOf(direction) === -1) return; 
-      switch(direction) {
-        case 'left': 
-          this.direction = [-1, 0];
-          this.allowDirection = 'top bottom';
+      switch(this.direction) {
+        case 'left':
+          foot.x = head.x - head.w;
+          foot.y = head.y;
           break;
         case 'right':
-          this.direction = [1, 0];
-          this.allowDirection = 'top bottom';
+          foot.x = head.x + head.w;
+          foot.y = head.y;
           break;
         case 'top':
-          this.direction = [0, -1];
-          this.allowDirection = 'left right';
+          foot.x = head.x;
+          foot.y = head.y - head.h;
           break;
         case 'bottom':
-          this.direction = [0, 1];
-          this.allowDirection = 'left right';
+          foot.x = head.x;
+          foot.y = head.y + head.h;
           break;
-        default:
-          throw new Error('Invalid direction parameter.');
       }
+
+      this.position.unshift(foot);
+    },
+
+    setDirection: function(newDirection) {
+      var hor = /left|right/,
+        ver = /top|bottom/;
+
+      if ((hor.test(this.direction) && ver.test(newDirection)) ||
+          (ver.test(this.direction) && hor.test(newDirection))) {
+        this.nextDirection = newDirection;
+      }
+    },
+
+    grow: function(len) {
+      var position = this.position,
+        footprint = this.footprint,
+        i,x, y, lastPos;
+
+      for (i = 0; i < len; i++) {
+        lastPos = footprint[i];
+
+        if (!lastPos) {
+          lastPos = position[position.length - 1];
+
+          switch (this.direction) {
+            case 'left':
+              x = lastPos.x + lastPos.w;
+              y = lastPos.y;
+              break;
+            case 'right':
+              x = lastPos.x - lastPos.w;
+              y = lastPos.y;
+              break;
+            case 'top':
+              x = lastPos.x;
+              y = lastPos.y + lastPos.h;
+              break;
+            case 'bottom':
+              x = lastPos.x;
+              y = lastPos.y - lastPos.h;
+              break;
+          }
+        }
+        else {
+          x = lastPos.x;
+          y = lastPos.y;
+        }
+        
+        position.push({
+          x: x,
+          y: y,
+          w: GRID_SIZE,
+          h: GRID_SIZE
+        });
+      }  
+    },
+
+    getPosition: function() {
+      return this.position[0];
+    },
+
+    checkCrash: function(obj) {
+      var ret = false,
+        head = this.position[0];
+
+      this.position.forEach(function(item, i) {
+        if (!i) return;
+        if (Utils.crash(head, item)) {
+          ret = true;
+        }
+      });
+
+      return ret;
     }
   };
 
@@ -170,6 +252,11 @@ Controller = (function() {
           break;
         case 40:
           self.game.Snake.setDirection('bottom');
+          break;
+        case 13:
+          if (self.game.status === 'gameover') {
+            self.game.start();
+          }
           break;
       }
     }
@@ -228,18 +315,29 @@ Game = (function() {
       this.Controller = new Controller(this);
     },
 
+    over: function() {
+      this.ctx.font = '50px sans-serif';
+      this.ctx.textAlign = 'center';
+      this.ctx.fillStyle = 'red';
+      this.ctx.fillText('Game Over', this.Map.width / 2, this.Map.height / 2);
+      this.status = 'gameover';
+      return;
+    },
+
     draw: function() {
-      if (this.status === 'over') {
-        alert('game over!');
+      if (this.status === 'pause' || this.status === 'gameover') {
         return;
       }
 
-      if (this.status === 'pause') {
+      this.Snake.advance();
+
+      if (this.Map.checkCrash(this.Snake.getPosition()) ||
+          this.Snake.checkCrash()) {
+        this.over();
         return;
       }
       
       this.ctx.clearRect(0, 0, WIDTH, HEIGHT);
-      this.Snake.advance();
       this.Snake.draw();
     }
   };
@@ -249,11 +347,10 @@ Game = (function() {
 
 App = (function() {
 
-  var SnakeGame = null;
+  SnakeGame = null;
 
   function _loop() {
     SnakeGame.draw();
-
     setTimeout(arguments.callee, 1000/FPS);
   }
 
@@ -261,7 +358,7 @@ App = (function() {
     SnakeGame = new Game();
     SnakeGame.start();
 
-    setTimeout(_loop, 1000/FPS);
+    _loop();
   }
   
   return {

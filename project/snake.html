@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Snake </title>
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+
+<body>
+<script>
+
+var App, Game, Map, Snake, Food, Utils, Controller, Tally;
+
+var GRID_SIZE = 10, WIDTH = 500, HEIGHT = 500, FPS = 2;
+
+Utils = {
+  style: function(elem, props) {
+    for (var prop in props) {
+      elem.style[prop] = props[prop];
+    }
+  },
+  setAlign: function(elem, width, height) {
+    this.style(elem, {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: -height / 2 + 'px',
+      marginLeft: -width / 2 + 'px'
+    });
+  }
+};
+
+Map = function(width, height) {
+  var mapElem = document.createElement('div');
+
+  Utils.style(mapElem, {
+    width: width + 'px',
+    height: height + 'px',
+    border: '1px solid #BFBFBF',
+    backgroundColor: '#FEFEFE'
+  });
+  Utils.setAlign(mapElem, width, height);
+
+  document.body.appendChild(mapElem);
+
+  this.width = width;
+  this.height = height;
+}
+
+Snake = (function() {
+
+  function _init() {
+    var i, x, y;
+
+    for (i = 0; i < this.length; i++) {
+      if (this.direction[0] === 0) {
+        x = this.origin[0];
+        y = this.origin[1] - (i * GRID_SIZE * this.direction[1]);
+      }
+      else {
+        x = this.origin[0] - (i * GRID_SIZE * this.direction[0]);
+        y = this.origin[1];
+      }
+
+      _grow.call(this, x, y);
+    }
+  }
+
+  function _grow(x, y) {
+    this.position.push({
+      x: x,
+      y: y,
+      w: GRID_SIZE,
+      h: GRID_SIZE
+    });
+  }
+
+  function _draw(ctx, o) {
+    ctx.fillRect(o.x, o.y, o.w, o.h);
+  }
+
+  function Snake(game, ctx) {
+    this.ctx = ctx;
+    this.game = game;
+    this.length = 3;
+    this.origin = [100, 100];
+    this.direction = [1, 0]; // turn right
+    this.allowDirection = 'top bottom';
+    this.position = [];
+    this.color = '#ccc';
+
+    _init.call(this);
+  }
+
+  Snake.prototype = {
+    consturctor: Snake,
+
+    draw: function() {
+      var ctx = this.ctx;
+
+      this.position.forEach(function(item, i) {
+        ctx.fillStyle = i ? 'black' : 'red';
+        _draw(ctx, item);
+      });
+    },
+
+    advance: function() {
+      var head = this.position.pop();
+
+      head.x = this.position[0].x + this.direction[0] * GRID_SIZE;
+      head.y = this.position[0].y + this.direction[1] * GRID_SIZE;
+
+      this.position.unshift(head);
+    },
+
+    setDirection: function(direction) {
+      if (this.allowDirection.indexOf(direction) === -1) return; 
+      switch(direction) {
+        case 'left': 
+          this.direction = [-1, 0];
+          this.allowDirection = 'top bottom';
+          break;
+        case 'right':
+          this.direction = [1, 0];
+          this.allowDirection = 'top bottom';
+          break;
+        case 'top':
+          this.direction = [0, -1];
+          this.allowDirection = 'left right';
+          break;
+        case 'bottom':
+          this.direction = [0, 1];
+          this.allowDirection = 'left right';
+          break;
+        default:
+          throw new Error('Invalid direction parameter.');
+      }
+    }
+  };
+
+  return Snake;
+}());
+
+Food = function() {
+  
+}
+
+Tally = function() {
+
+}
+
+Controller = (function() {
+  var _handleKeyDown;
+
+  function _init() {
+    var self = this;
+
+    _handleKeyDown = function(e) {
+      switch(e.keyCode) {
+        case 37:
+          self.game.Snake.setDirection('left');
+          break;
+        case 38:
+          self.game.Snake.setDirection('top');
+          break;
+        case 39:
+          self.game.Snake.setDirection('right');
+          break;
+        case 40:
+          self.game.Snake.setDirection('bottom');
+          break;
+      }
+    }
+
+    _bind();
+  }
+
+  function _bind() {
+    document.body.addEventListener('keydown', _handleKeyDown, false);
+  }
+
+  function _unbind() {
+    document.body.removeEventListener('keydown', _handleKeyDown, false);    
+  }
+
+  function Controller(game) {
+    this.game = game;
+    this.game.status = 'playing';
+
+    _init.call(this);
+  }
+
+  return Controller;
+}());
+
+Game = (function() {
+
+  function createGameCanvas(width, height) {
+    this.canvas = document.createElement('canvas');
+    this.canvas.width = width;
+    this.canvas.height = height;
+    this.ctx = this.canvas.getContext('2d');
+
+    Utils.setAlign(this.canvas, width, height);
+    Utils.style(this.canvas, {
+      'border': '1px solid #ccc'
+    });
+
+    document.body.appendChild(this.canvas);
+  }
+  
+  function Game() {
+    this.init();
+  }
+
+  Game.prototype = {
+    constructor: Game,
+      
+    init: function() {
+      this.Map = new Map(WIDTH, HEIGHT);
+      createGameCanvas.call(this, WIDTH, HEIGHT);
+    },
+
+    start: function() {
+      this.Snake = new Snake(this, this.ctx);
+      this.Controller = new Controller(this);
+    },
+
+    draw: function() {
+      if (this.status === 'over') {
+        alert('game over!');
+        return;
+      }
+
+      if (this.status === 'pause') {
+        return;
+      }
+      
+      this.ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      this.Snake.advance();
+      this.Snake.draw();
+    }
+  };
+
+  return Game;
+}());
+
+App = (function() {
+
+  var SnakeGame = null;
+
+  function _loop() {
+    SnakeGame.draw();
+
+    setTimeout(arguments.callee, 1000/FPS);
+  }
+
+  function init() {
+    SnakeGame = new Game();
+    SnakeGame.start();
+
+    setTimeout(_loop, 1000/FPS);
+  }
+  
+  return {
+    init: init
+  }
+}());
+
+window.onload = App.init;
+</script>
+</body>
+</html>

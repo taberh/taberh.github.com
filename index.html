@@ -1,55 +1,12 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-<meta charset="utf-8"> 
-<title>Taber's profiles</title> 
-<meta name="description" content="taber's profiles" />
-<link rel="stylesheet" href="css/common.css" />
-<style type="text/css">
-header {
-  position:absolute;
-  top:50%;
-  left:0;
-  width:100%;
-  margin-top:-16px;
-}
-</style> 
-<!--[if lt IE 9]>
-<script src="/js/html5.js"></script>
-<style>
-section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
-</style>
-<![endif]-->
-</head> 
- 
-<body>
-
-<header>
-  <nav>
-    <h1>
-      <a href="/">Table's</a>
-    </h1>
-    <a href="http://taber-huang.appspot.com">Blog</a>
-    <a href="https://twitter.com/taberhuang">Twitter</a>
-    <a href="https://github.com/taberhuang">Github</a>
-    <a href="http://www.scoop.it/u/taberh">Scoop.it</a>
-    <a href="/project">Project</a>
-    <a href="http://www.douban.com/people/taberhuang/">豆瓣</a>
-  </nav>
-</header>
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-23358884-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-</body> 
-</html>
+---
+layout: default
+title: Taber
+---
+<section>
+  <h1>Blog Posts</h1>
+  <ul>
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>

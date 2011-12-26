@@ -1,136 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Taber's Resume</title>
-<link rel="stylesheet" href="css/common.css" />
-<!--[if lt IE 9]>
-<script src="/js/html5.js"></script>
+---
+layout: default
+title: taber's resume
+---
 <style>
-section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
-</style>
-<![endif]-->
-<style>
-section a {
-  color:#666;
-}
-a:hover {
-  color:red;
-}
-section {
-  position:relative;
-  width:80%;
-  margin:0 auto;
-  font-size:12px;
-  font-family:"宋体";
-  line-height:22px;
-}
-h2, h3 {
-  padding-left:10px;
-  border-left:20px solid #ccc;
-  color:#333;
-}
-h2 {
-  font-size:26px;
-  margin:40px 0;
-}
-h3 {
-  font-size:20px;
-  margin:30px 0 15px 0;
-}
-p, dl, ul {
-  margin-left:4em;
-}
-span {
-  margin-right:5px;
-  color:#666;
-}
-#experience strong {
-  margin:0 10px;
-  font-weight:bold;
-  color:#333;
-}
-.phone {
-  margin:0 15px;
-  font-size:16px;
-  font-family:Calibri;
-}
-#printButton {
-  position:absolute;
-  top:10px;
-  left:220px;
-  background:url(images/print.gif) no-repeat 0 2px;
-  padding-left:16px;
-  text-decoration:none;
-}
-#printButton:hover {
-  background-position:0 -18px;
-}
-#base-info ul {
-  margin-top:15px;
-}
-#project {
-  margin-bottom:80px;
-}
-#project a {
-  margin-left:10px;
-}
-dt {
-  margin-top:8px;
-  color:#333;
-}
-dd {
-  color:#999;
-}
+section a { color:#666; }
+a:hover { color:red; }
+section { position:relative; width:80%; margin:0 auto; font-size:12px; font-family:"宋体"; line-height:22px; }
+h2, h3 { padding-left:10px; border-left:20px solid #ccc; color:#333; }
+h2 { font-size:26px; margin:40px 0; }
+h3 { font-size:20px; margin:30px 0 15px 0; }
+p, dl, ul { margin-left:4em; }
+span { margin-right:5px; color:#666; }
+#experience strong { margin:0 10px; font-weight:bold; color:#333; }
+.phone { margin:0 15px; font-size:16px; font-family:Calibri; }
+#printButton { position:absolute; top:10px; left:220px; background:url(/static/images/print.gif) no-repeat 0 2px; padding-left:16px; text-decoration:none; }
+#printButton:hover { background-position:0 -18px; }
+#base-info ul { margin-top:15px; }
+#project { margin-bottom:80px; }
+#project a { margin-left:10px; }
+dt { margin-top:8px; color:#333; }
+dd { color:#999; }
 </style>
 <style type="text/css" media="print">
-body {
-  font-size:10px;
-}
-h1,h2,h3,h4,h5,h6,h7 {
-  font-family:"微软雅黑";
-}
-#printButton,
-header {
-  display:none;
-}
-h2 {
-  margin:30px 0;
-}
-h3 {
-  margin:20px 0 10px 0;
-}
-#base-info ul {
-  margin-top:10px;
-}
-dt {
-  margin-top:6px;
-}
-strong {
-  font-weight:bold;
-}
-#project {
-  margin-bottom:0;
-}
+body { font-size:10px; }
+h1,h2,h3,h4,h5,h6,h7 { font-family:"微软雅黑"; }
+#printButton,header { display:none; }
+h2 { margin:30px 0; }
+h3 { margin:20px 0 10px 0; }
+#base-info ul { margin-top:10px; }
+dt { margin-top:6px; }
+strong { font-weight:bold; }
+#project { margin-bottom:0; }
 </style>
-</head>
-
-<body>
-
-<header>
-  <nav>
-    <h1>
-      <a href="/">Table's</a>
-    </h1>
-    <a href="http://taber-huang.appspot.com">Blog</a>
-    <a href="https://twitter.com/taberhuang">Twitter</a>
-    <a href="https://github.com/taberhuang">Github</a>
-    <a href="http://www.scoop.it/u/taberh">Scoop.it</a>
-    <a href="/project">Project</a>
-    <a href="http://www.douban.com/people/taberhuang/">豆瓣</a>
-  </nav>
-</header>
-
 <section>
 	<h2>应聘-前端开发</h2>
   <a id="printButton" href="javascript:window.print()">打印</a>
@@ -183,16 +84,3 @@ strong {
     <dt><strong>Canvas版-图片加工厂</strong><a href="/project/plant.html">http://taberh.me/project/plant.html</a></dt>
   </dl>
 </section>
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-23358884-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-</body>
-</html>

@@ -1,9 +1,44 @@
 ---
 layout: default
 title: Taber
-styles: [index]
 ---
-<section>
+<style>
+/*
+    @名称: index
+	@功能: 首页样式
+*/
+h2 {
+  font-size:18px;
+  font-weight:bold;
+  color:black;
+}
+#article,
+#project,
+#aboutme {
+  width:80%;
+  margin:30px auto 0;
+}
+#article ul,
+#project ul,
+#aboutme p {
+  margin:0 2em;
+}
+#article span {
+  color:#999;
+}
+#aboutme {
+  line-height:30px;
+}
+#aboutme span {
+  font-weight:bold;
+  margin-right:10px;
+}
+#aboutme a {
+  margin-right:15px;
+}
+</style>
+
+<section id="article">
   <h2>Article</h2>
   <ul>
     {% for post in site.posts %}
@@ -12,7 +47,7 @@ styles: [index]
   </ul>
 </section>
 
-<section>
+<section id="project">
   <h2>Project</h2>
   <ul>
     <li>
@@ -27,10 +62,10 @@ styles: [index]
   </ul>
 </section>
 
-<section>
+<section id="aboutme">
   <h2>About me</h2>
-  <p><span>简介</span>技术爱好者.正在努力前进中...  -->前端</p>
-  <p><span>足迹</span><a href="#">Twitter</a></p>
-  <p><span>E-mail</span><a href="#">taber.huang@gmail.com</a></p>
+  <p>技术爱好者.正在努力前进中...  --> 前端</p>
+  <p><span>足迹</span><a href="#">Twitter</a><a href="#">Twitter</a><a href="#">Twitter</a><a href="#">Twitter</a></p>
   <p><span>QQ</span>471173177</p>
+  <p><span>E-mail</span><a href="#">taber.huang@gmail.com</a></p>
 </section>

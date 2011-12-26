@@ -194,12 +194,12 @@ footer p {
   line-height:32px;
   font-size:24px;
   font-weight:normal;
-}
-#logo a {
   color:#fff;
   text-decoration:none;
+}
+nav #logo {
   margin-left:0;
 }
-#logo a:hover {
+#logohover {
   background:none;
 }

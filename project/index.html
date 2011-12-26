@@ -1,74 +1,32 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Project</title>
-<link rel="stylesheet" href="/static/css/common.css" />
-<!--[if lt IE 9]>
-<script src="/static/js/html5.js"></script>
+---
+layout: default
+title: Project
+---
 <style>
-section,aside{display:block;}h2{font-weight:bold;}.avatar{display:none;}
+a:hover {
+  color:black;
+}
+#project {
+  width:80%;
+  margin:100px auto;
+}
+#project li {
+  float:left;
+  margin-right:30px;
+}
+#project a {
+  border-left:5px solid #ccc;
+  padding-left:8px;
+}
+#project a:hover {
+  border-left-color:black;
+}
 </style>
-<![endif]-->
-<style>
-  a {
-    color:#666;
-  }
-  a:hover {
-    color:black;
-  }
-  #project {
-    width:80%;
-    margin:100px auto;
-  }
-  #project li {
-    float:left;
-    margin-right:30px;
-  }
-  #project a {
-    border-left:5px solid #ccc;
-    padding-left:8px;
-  }
-  #project a:hover {
-    border-left-color:black;
-  }
-</style>
-</head>
 
-<body>
-<header>
-  <nav>
-    <h1>
-      <a href="/">Table's</a>
-    </h1>
-    <a href="http://taber-huang.appspot.com">Blog</a>
-    <a href="https://twitter.com/taberhuang">Twitter</a>
-    <a href="https://github.com/taberhuang">Github</a>
-    <a href="http://www.scoop.it/u/taberh">Scoop.it</a>
-    <a href="/project">Project</a>
-    <a href="http://www.douban.com/people/taberhuang/">豆瓣</a>
-  </nav>
-</header>
-<ul id="project">
+<ul id="project" class="fn-clear">
   <li><a href="plant.html">图片加工厂</a></li>
   <li><a href="light.html">Android 屏保</a></li>
   <li><a href="http://igrow.sinaapp.com/">好育园幼儿园</a></li>
   <li><a href="http://2.gy/aaNu">快递查询扩展</a></li>
   <li><a href="snake.html">贪食蛇</a></li>
 </ul>
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-23358884-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-</body>
-</html>

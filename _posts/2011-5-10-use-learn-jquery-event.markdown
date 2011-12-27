@@ -1,5 +1,6 @@
 ---
 layout: post
+styles: [syntax]
 title: jQuery Event 源码学习
 ---
 
@@ -17,7 +18,7 @@ jQuery在对DOM元素进行绑定事件时，通过jQuery.data在jQuery.cache中
   
 events是一个对象，events中的属性值存储的是事件类型；值是一个数组。当为DOM元素绑定事件时，首先会创建一个包含响应函数、事件类型、guid和一些附加信息的对象，如果events中不存在值为该事件类型的属性，则添加一个值为该事件类型的属性，和一个值为空的数组，然后将刚创建的新对象push到数组中；如果存在，直接push到相对应的数组中。看下面这个例子就一目了然了：
 
-<pre>
+{% highlight ruby %}
 //给id元素绑定两个单击和一个鼠标离开事件 
 $('#id').bind('click', function() { alert('once'); }); 
 $('#id').bind('click', function() { alert('second'); }); 
@@ -42,7 +43,7 @@ $('#id').bind('mouseout', function(){ alert('mouseout'); });
     } 
   ] 
 }
-</pre>
+{% endhighlight %}
 
 handle是一个函数。jQuery为每一个DOM元素绑定的任意类型事件的响应函数都是此函数，并不是直接将用户传入的函数绑定为响应函数。该函数会在执行时调用一个公共方法jQuery.event.handle，通过apply更改this的指向，此函数还有一个静态属性elem，也是指向DOM元素自己，下面是jQuery中的源码：
 

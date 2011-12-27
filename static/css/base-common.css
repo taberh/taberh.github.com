@@ -22,7 +22,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body,button,input,select,textarea{
-	font:12px/1.5 tahoma,arial,\5b8b\4f53;
+	font:13px/1.5 tahoma,arial,\5b8b\4f53;
 }
 input,select,textarea{
 	font-size:100%;
@@ -154,6 +154,7 @@ a {
   text-decoration:none;
 }
 a:hover {
+  color:#A10000;
   text-decoration:underline;
 }
 header{
@@ -174,6 +175,7 @@ nav a {
 nav a:hover {
   color:#efefef;
   background:#9C9C9C;
+  text-decoration:none;
 }
 footer {
   height:32px;
@@ -187,12 +189,11 @@ footer p {
   margin:auto;
 }
 #logo {
-  float:left;
+  display:inline-block;
+  width:105px;
   font-size:24px;
   font-family:"UltraRegular", Calibri, "宋体";
-  float:left;
   line-height:32px;
-  font-size:24px;
   font-weight:normal;
   color:#fff;
   text-decoration:none;

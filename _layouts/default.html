@@ -3,6 +3,12 @@
 <head> 
 <meta charset="utf-8">
 <title>{{ page.title }}</title>
+{% if page.description %}
+<meta name="description" content="{{ page.description }}" />
+{% endif %}
+{% if page.keywords %}
+<meta name="keywords" content="{{ page.keywords }}" />
+{% endif %}
 <link rel="stylesheet" href="/static/css/base-common.css" />
 {% if page.styles %}
 {% for style in page.styles %}
@@ -19,18 +25,18 @@
 <header>
   <nav>
     <a href="/" id="logo">Table's</a>
-    <a href="/article">Article</a>
-    <a href="/project">Project</a>
+    <a href="/#anchor-article">Article</a>
+    <a href="/#anchor-project">Project</a>
     <a href="https://github.com/taberhuang">Github</a>
     <a href="http://www.scoop.it/u/taberh">Scoop.it</a>
-    <a href="#" class="fn-right">About</a>
+    <a href="/#anchor-aboutme" class="fn-right">About</a>
   </nav>
 </header>
 
 {{ content }}
 
 <footer>
-  <p>Build by <a href="#" target="_blank">Jekyll</a></p>
+  <p>Build by <a href="https://github.com/mojombo/jekyll/wiki" target="_blank">Jekyll</a></p>
 </footer>
 
 <script type="text/javascript">

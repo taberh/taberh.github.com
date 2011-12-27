@@ -86,9 +86,11 @@ add:
 
 接下来，本人就自己所想到的问题进行了思考。我们看看，这样做的唯一一点就是减少了JavaScript引擎对各个DOM元素本身相同类型事件的listening数，用一个对象将DOM元素绑定的响应函数重新组织了下，并增加了一些附加信息。难道说减少listening数可以减少对内存的使用，提高运行效率吗？如果是这样，我们便可以用最老土的方法来进行一些测试，以下是本人的测试方法和数据，仅供参考。
 
-Chrome 11	内存使用/MB	解析时间/ms	处理响应时间/ms
-jQuery.bind	17.5	44.75	30.75
-addEventListener	21.75	215.75	11.5
+<pre>
+Chrome 11          内存使用/MB   解析时间/ms   处理响应时间/ms
+jQuery.bind        17.5	         44.75         30.75
+addEventListener   21.75         215.75        11.5
+</pre>
 
 以上数据是在window下的chrome 11.0.696.65环境中，绑定10 000个事件处理后，测试得到的平均值。当我绑定100 000个事件处理时，使用原生的addEventListener Chrome就提示无影响了，而用jQuery.bind是正常的。
 

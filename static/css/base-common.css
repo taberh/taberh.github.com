@@ -157,15 +157,17 @@ a:hover {
   color:#A10000;
   text-decoration:underline;
 }
+nav,
+footer p,
+#main {
+  width:960px;
+  margin:0 auto;
+}
 header{
   height:32px;
   background:#333;
   color:white;
   line-height:32px;
-}
-nav {
-  width:80%;
-  margin:0 auto;
 }
 nav a {
   margin:0 10px;
@@ -183,10 +185,6 @@ footer {
   border-top:1px dashed #CCC;
   text-align:right;
   line-height:32px;
-}
-footer p {
-  width:80%;
-  margin:auto;
 }
 #logo {
   display:inline-block;

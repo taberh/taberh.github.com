@@ -206,11 +206,18 @@ nav #logo {
 
 /* terminal */
 .terminal {
-border: 1px solid black;
-background-color: #333;
-color: white;
+  border: 1px solid black;
+  background-color: #333;
+  color: white;
 }
 
 .terminal code {
-background-color: #333;
+  background-color: #333;
+}
+
+/* note */
+.note {
+  font-size:16px;
+  line-height:1.6;
+  color:#A10000;
 }

@@ -54,7 +54,6 @@ h2 {
 }
 </style>
 
-<a id="anchor-article" name="anchor-article"> </a>
 <section id="article">
   <h2>Article</h2>
   <ul>
@@ -64,7 +63,6 @@ h2 {
   </ul>
 </section>
 
-<a id="anchor-project" name="anchor-project"> </a>
 <section id="project">
   <h2>Project</h2>
   <ul class="fn-clear">
@@ -80,7 +78,6 @@ h2 {
   </ul>
 </section>
 
-<a id="anchor-aboutme" name="anchor-aboutme"> </a>
 <section id="aboutme">
   <h2>About me</h2>
   <p>技术爱好者.正在努力前进中 --> 前端</p>
@@ -88,3 +85,38 @@ h2 {
   <p><span>Q Q:</span>471173177</p>
   <p><span>E-mail:</span><a href="#">taber.huang@gmail.com</a></p>
 </section>
+
+<script>
+function moveSection(hash) {
+  var body, elem, value;
+
+  if (!hash) return;
+  
+  hash = hash.match(/#[^#]*/g);
+
+  for (var i = 0, len = hash.length; i < len; i++) {
+    value = hash[i];
+
+    if (value.indexOf('#anchor-') > -1) {
+      elem = document.getElementById(value.replace(/#anchor-/, ''));
+      break;
+    }
+  }
+
+  body = document.getElementById('main');
+  body.insertBefore(elem, body.firstElementChild || body.firstChild); 
+}
+
+moveSection(location.hash);
+
+if (location.pathname === '/') {
+  document.getElementById('link-article').onclick = goTo;
+  document.getElementById('link-project').onclick = goTo;
+  document.getElementById('link-aboutme').onclick = goTo;
+}
+
+function goTo(e) {
+  moveSection(this.href);
+  return false;
+}
+</script>

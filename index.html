@@ -4,7 +4,7 @@ title: Taber
 ---
 <style>
 /*
-    @名称: index
+  @名称: index
 	@功能: 首页样式
 */
 h2 {
@@ -22,8 +22,11 @@ h2 {
 #aboutme p {
   margin:0 2em;
 }
-#article span {
+#article time {
   color:#999;
+}
+#article ul {
+  line-height:1.8;
 }
 #project li {
   margin:8px 8px 0 0;
@@ -43,7 +46,7 @@ h2 {
   height:100px;
 }
 #aboutme {
-  line-height:30px;
+  line-height:2.2;
 }
 #aboutme span {
   font-weight:bold;
@@ -58,7 +61,7 @@ h2 {
   <h2>Article</h2>
   <ul>
     {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_string }}</time> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
 </section>

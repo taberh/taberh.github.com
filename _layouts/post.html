@@ -2,24 +2,25 @@
 layout: default
 ---
 <style>
-section {
+article {
   margin:30px auto 0;
+  color:#666;
 }
-h1 {
+article h1 {
   text-align:center;
   font-size:28px;
   font-weight:bold;
   line-height:2;
   color:black;
 }
-h2 {
+article h2 {
   font-weight:bold;
   line-height:2;
   color:black;
   font-size:20px;
   margin-top:10px;
 }
-p {
+article p {
   margin:12px 0;
   text-indent:2em;
   font-size:18px;
@@ -36,9 +37,7 @@ article p code {
   color: white;
 }
 </style>
-<section>
+<article>
   <h1>{{ page.title }}</h1>
-  <article>
   {{ content }}
-  </article>
-</section>
+</article>

@@ -1,7 +1,7 @@
 ---
 layout: post
 styles: [syntax]
-title: 认识UIKit的核心类和理解APP的工作流程
+title: 认识UIKit的核心类
 ---
 
 <h2>UIKit</h2>
@@ -17,14 +17,7 @@ UIKit是Cocoa框架的一部分。UIKit为所有的应用程序提供基本类�
 
 <b>UIWindow:应该说是应用显示对象中的根对象，和javascript中的window类似。UIWindow对象只负责负责提供一个主容器，不负责显示内容，所有的显示内容都归views管理。在window上设置一个或者多个views用来显示具体内容。和view controller一样，它有一个subviews属性,还有一个rootViewController属性，可以设置一个根view controller。通常所有的APP只有一个window对象，因为可以使用view controller或subviews的位置，便可切换一同的views。当然也可以为连接到设置的外部显示器新建一个新的window，显示不同的内容。</b>
 
-<b>UIDocument:</b>
-
-<h2>APP的工作流程</h2>
-<img>
-说明
-
-<h2>示例</h2>在delegate类中
-
-<h2>UIApplicationDelegate常用方法介绍</h2>
+<b>UIDocument:可以使用文件作为数据源，并用UIDocument对象创建一个数据模型。</b>
 
 <h2>参考：</h2>
+- <https://developer.apple.com/library/ios/#documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/AppArchitecture/AppArchitecture.html#//apple_ref/doc/uid/TP40007072-CH3-SW1>

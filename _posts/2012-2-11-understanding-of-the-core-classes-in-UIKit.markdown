@@ -1,7 +1,7 @@
 ---
 layout: post
 styles: [syntax]
-title: 认识UIKit的核心类
+title: ios开发笔记-认识UIKit的核心类
 ---
 
 <h2>UIKit</h2>

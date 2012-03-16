@@ -15,9 +15,9 @@ UIKit是Cocoa框架的一部分。UIKit为所有的应用程序提供基本类�
 
 <b>UIViewController:</b>用于管理一个简单的view和他的subviews在屏幕上的表现。对于view和subviews可以这样理解：view是一个容器；subviews就是容器是的一个东西的集合，可以使用addSubview添加Button,Label,UIView到这个集合中，最先添回的在最低层，而上层的对象如果跟下层的重叠的话，便会遮住下层的对象，看不到了。UIViewController类还是所有view controller的基础类，提供加载显示views，和屏幕旋转等默认功能。
 
-<b>UIWindow:应该说是应用显示对象中的根对象，和javascript中的window类似。UIWindow对象只负责负责提供一个主容器，不负责显示内容，所有的显示内容都归views管理。在window上设置一个或者多个views用来显示具体内容。和view controller一样，它有一个subviews属性,还有一个rootViewController属性，可以设置一个根view controller。通常所有的APP只有一个window对象，因为可以使用view controller或subviews的位置，便可切换一同的views。当然也可以为连接到设置的外部显示器新建一个新的window，显示不同的内容。</b>
+<b>UIWindow:</b>应该说是应用显示对象中的根对象，和javascript中的window类似。UIWindow对象只负责负责提供一个主容器，不负责显示内容，所有的显示内容都归views管理。在window上设置一个或者多个views用来显示具体内容。和view controller一样，它有一个subviews属性,还有一个rootViewController属性，可以设置一个根view controller。通常所有的APP只有一个window对象，因为可以使用view controller或subviews的位置，便可切换一同的views。当然也可以为连接到设置的外部显示器新建一个新的window，显示不同的内容。
 
-<b>UIDocument:是用于管理数据和文档的一个抽象类。可以使用这个类获得以下几个好处：在后台队队中异步读写数据；集成iCloud服务；支持文件版本冲突检查；安全的存取操作。</b>
+<b>UIDocument:</b>是用于管理数据和文档的一个抽象类。可以使用这个类获得以下几个好处：在后台队队中异步读写数据；集成iCloud服务；支持文件版本冲突检查；安全的存取操作。
 
 <h2>参考：</h2>
-- <https://developer.apple.com/library/ios/#documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/AppArchitecture/AppArchitecture.html#//apple_ref/doc/uid/TP40007072-CH3-SW1>
+- <http://goo.gl/u8RBd>

@@ -4,6 +4,7 @@ styles: [syntax]
 title: ios系统预定义Scheme URL大全
 ---
 
+<pre class="terminal">
 ----- Application -----
 
 Safari: 	http://www.taberh.me
@@ -67,7 +68,7 @@ Töne: 						prefs:root=Sounds (praktisch um Vibration schnell ein/aus zu schalt
 Klingeltöne: prefs:root=Sounds&path=Ringtone
 Ortungsdienste(Systemdienste):
 prefs:root=LOCATION_SERVICES_Systemservices
-
+</pre>
 
 -<http://pastebin.com/hQd6gbAy>
 

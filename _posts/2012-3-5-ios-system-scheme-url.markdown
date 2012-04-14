@@ -66,10 +66,8 @@ Mobile Daten:			 	prefs:root=General&path=USAGE/CELLULAR_USAGE
 Siri Spracheinstellungen: 	prefs:root=General&path=Assistant
 </pre>
 
+<div style="margin-top:20px">参考及相关资料：</div>
 
-
--<http://pastebin.com/hQd6gbAy>
-
--<http://wiki.akosma.com/IPhone_URL_Schemes>
-
--<http://goo.gl/6a4DS>
+- <http://pastebin.com/hQd6gbAy>
+- <http://wiki.akosma.com/IPhone_URL_Schemes>
+- <http://goo.gl/6a4DS>

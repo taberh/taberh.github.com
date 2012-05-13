@@ -10,16 +10,19 @@ title: 自定义Xcode4工程模板
 
 其实一个工程模板就是一个目录，和一个.plist配置文件和自已添加的的附加文件，比如图标、声音、源代码和XIB等文件组合。但是工程模板目录名必须以`.xctemplate`结尾；而.plist配置文件名必须是`TemplateInfo`，下面是一个最简单的模板结构：
 
-```
+````
+
 -- XXX.xctemplate
 	- TemplateInfo.plist
-```
+	
+````
 
 我们都知道plist文件的本质中一个xml，现在主要的问题就是这个xml有哪些配置项、配置规则？
 
 规则很简单，一个key对应一个值，这个值可以是：Array,Boolean,Dictionary,String，下面是一个不完整的key：
 
-```
+````
+
 Ancestors:
 Concrete
 Definitions
@@ -34,7 +37,8 @@ Platforms
 Project
 SortOrder
 Targets
-```
+
+````
 
 现在我们可以配置自己想要的模板了，我来建个示例模板吧，我们就叫它`Custom Application`：
 
@@ -46,7 +50,8 @@ Targets
 
 进入`Custom Application.xctemplate`目录，使用文件编辑器新建文件保存为`TemplateInfo.plist`，文件内容如下：
 
-```
+```xml
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -54,11 +59,13 @@ Targets
 	// config something
 </dict>
 </plist>
+
 ```
 
 有了这个基础结构，我们就可以添砖加瓦了，只需要在`dict`下添加一对对应的key/value节点就可以了，打个比方：
 
-```
+```xml
+
 // String
 <key></key>
 <string></string>
@@ -74,6 +81,7 @@ Targets
 // Array 
 <key></key>
 <string></string>
+
 ```
 
 第三步：添加
@@ -83,9 +91,11 @@ Targets
 
 安装非常简单，只要将我们新建的模板目录拷到下面的目录即可(Xcode 4.2)：
 
-```
+````
+
 /Developer/Plaforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/Project Templates/Application
-```
+
+````
 
 这个时候我们启动Xcode -> File -> New -> New Project… 在Application类别中即可看见我们自定义的模板`Custom Application`，如下图：
 
@@ -99,3 +109,4 @@ Targets
 ## 参考
 
 - <http://meandmark.com/blog/2011/12/creating-custom-xcode-4-project-templates/>
+- <https://snipt.net/yonishin/about-xcode-4-project-template/>

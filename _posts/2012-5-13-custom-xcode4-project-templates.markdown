@@ -50,8 +50,7 @@ Targets
 
 进入`Custom Application.xctemplate`目录，使用文件编辑器新建文件保存为`TemplateInfo.plist`，文件内容如下：
 
-```xml
-
+```js
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -59,7 +58,6 @@ Targets
 	// config something
 </dict>
 </plist>
-
 ```
 
 有了这个基础结构，我们就可以添砖加瓦了，只需要在`dict`下添加一对对应的key/value节点就可以了，打个比方：

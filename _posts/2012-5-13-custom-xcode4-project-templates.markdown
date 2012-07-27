@@ -98,5 +98,6 @@ Targets
 
 ## 参考
 
-- <http://meandmark.com/blog/2011/12/creating-custom-xcode-4-project-templates/>
-- <https://snipt.net/yonishin/about-xcode-4-project-template/>
+- <https://svn.apache.org/repos/asf/incubator/callback/phonegap-iphone/trunk/PhoneGap-based%20Application.xctemplate/TemplateInfo.plist>
+- <https://github.com/borealkiss/Minimal-Template/blob/master/Minimal%20Template/Minimal%20Template.xctemplate/TemplateInfo.plist>
+- <http://bobmccune.com/2012/03/04/creating-custom-xcode-4-file-templates/>

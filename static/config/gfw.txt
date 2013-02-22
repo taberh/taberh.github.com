@@ -1,0 +1,11 @@
+#BEGIN
+
+[Wildcard]
+*://*.samabox.com/*
+*://*.google.com/*
+
+[RegExp]
+^http://code\.google\.com/.*
+youtube
+
+#END

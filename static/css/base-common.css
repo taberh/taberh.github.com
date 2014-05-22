@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* 
+/*
 	@名称: base
 	@功能: 重设浏览器默认样式
 */
@@ -16,13 +16,13 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 }
 
 /* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
     display:block;
 }
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body,button,input,select,textarea{
-	font:13px/1.5 tahoma,arial,\5b8b\4f53;
+	font:13px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
 }
 input,select,textarea{
 	font-size:100%;

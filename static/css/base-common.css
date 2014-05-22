@@ -146,7 +146,7 @@ body .fn-hide {
 }
 
 body {
-  font-family:Calibri, "微软雅黑", "宋体";
+  font-family:tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
   color:#333;
   background:url("/static/images/hexBackground.png") repeat top left, url("/static/images/hexBackground_2.png") repeat 0px 20px;
 }

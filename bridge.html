@@ -9,9 +9,15 @@
   <title>Bridge</title>
 </head>
 <body>
+  <button id="call">Call WindVane API</button>
+  <div id="console"></div>
   <script>
+    // send
+    document.getElementById('call').addEventListener('click', function() {
+      window.parent.postMessage('call', '*');
+    });
     window.addEventListener('message', function(e) {
-      alert(JSON.stringify(e.data))
+      document.getElementById('console').innerHTML = e.data;
     });
   </script>
 </body>
